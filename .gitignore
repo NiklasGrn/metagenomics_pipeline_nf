@@ -1,0 +1,8 @@
+/data
+/work*
+/results*
+*.log
+.nextflow*
+.visual
+*.dot
+*.html
