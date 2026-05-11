@@ -20,7 +20,7 @@
 ## Usage
 
 > [!NOTE]
-> If you are new to Nextflow, please refer to [this page]([https://nf-co.re/docs/get_started/environment_setup/overview](https://nf-co.re/docs/get_started/environment_setup/nextflow)) on how to set-up Nextflow.
+> If you are new to Nextflow, please refer to [this page](https://nf-co.re/docs/get_started/environment_setup/nextflow) on how to set-up Nextflow.
 
 ### Basic Usage
 
