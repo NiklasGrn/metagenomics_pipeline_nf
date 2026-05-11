@@ -1,7 +1,6 @@
 # NiklasGrn/metagenomics_pipeline
 
 [![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.4-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
-[![nf-core template version](https://img.shields.io/badge/nf--core_template-4.0.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/4.0.2)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 
 
@@ -21,8 +20,9 @@
 ## Usage
 
 > [!NOTE]
-> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/get_started/environment_setup/overview) on how to set-up Nextflow.
+> If you are new to Nextflow, please refer to [this page]([https://nf-co.re/docs/get_started/environment_setup/overview](https://nf-co.re/docs/get_started/environment_setup/nextflow)) on how to set-up Nextflow.
 
+### Basic Usage
 
 ```bash
 nextflow run main.nf
@@ -114,24 +114,23 @@ nextflow run main.nf -resume
 ### Classification Mode
 
 Choose between 16S rRNA classification or metagenomic assembly and classification:
+16S classification with EMU (`--classify_16S` default: false)
+
 
 ```bash
-# 16S classification with EMU (default: false)
 nextflow run main.nf --classify_16S true
 
-# Metagenomic assembly + classification (default)
 nextflow run main.nf --classify_16S false
 ```
 
 ### Quality Control Parameters
 
 Configure read filtering thresholds:
+Minimum Quality `--min_q` default: 10   Minimum Length  `--min_q` default: 1000
 
 ```bash
-# Minimum quality score (default: 10)
 nextflow run main.nf --min_q 12
 
-# Minimum read length in bp (default: 1000)
 nextflow run main.nf --min_len 2000
 ```
 
@@ -140,17 +139,14 @@ nextflow run main.nf --min_len 2000
 Remove host organism reads:
 
 ```bash
-# Enable host depletion (requires host_ref parameter)
 nextflow run main.nf --host_depletion true
 
-# Specify host reference genome
 nextflow run main.nf --host_depletion true --host_ref "/path/to/host_genome.fa"
 ```
 
 Remove human contamination:
 
 ```bash
-# Enable human read removal
 nextflow run main.nf --human_depletion true
 ```
 
@@ -159,10 +155,8 @@ nextflow run main.nf --human_depletion true
 Skip specific analysis stages:
 
 ```bash
-# Skip binning analysis
 nextflow run main.nf --skip_binning true
 
-# Skip assembly (use for 16S-only analysis)
 nextflow run main.nf --skip_assembly true
 ```
 
@@ -171,7 +165,6 @@ nextflow run main.nf --skip_assembly true
 Classify reads by mapping to a reference database:
 
 ```bash
-# Enable reference mapping
 nextflow run main.nf --map_to_ref true --ref "/path/to/reference.fasta"
 ```
 
@@ -200,22 +193,19 @@ nextflow run main.nf -c custom.config
 Specify custom database locations:
 
 ```bash
-# Kraken2 database
 nextflow run main.nf --kraken_db "/path/to/kraken2_db"
 
-# Bracken database files
 nextflow run main.nf --bracken_db_files "/path/to/bracken_db"
 
-# EMU 16S database
 nextflow run main.nf --emu_db "/path/to/emu_silva"
 ```
 
 ## Execution Profiles
 
 Use predefined profiles for specific database configurations:
+Use the NT core database (nucleotide core collection only 1 simultaneous process of Kraken2 and additional CPU usage allocated)
 
 ```bash
-# Use the NT core database (nucleotide core collection only 1 simultaneous process of Kraken2 and additional RAM usage allocated)
 nextflow run main.nf -profile nt_core
 ```
 
@@ -240,27 +230,3 @@ executor {
 
 NiklasGrn/metagenomics_pipeline was originally written by Niklas Grundner.
 
-We thank the following people for their extensive assistance in the development of this pipeline:
-
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
-
-## Contributions and Support
-
-If you would like to contribute to this pipeline, please see the [contributing guidelines](docs/CONTRIBUTING.md).
-
-## Citations
-
-<!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
-<!-- If you use NiklasGrn/metagenomics_pipeline for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
-
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
-
-An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
-
-This pipeline uses code and infrastructure developed and maintained by the [nf-core](https://nf-co.re) community, reused here under the [MIT license](https://github.com/nf-core/tools/blob/main/LICENSE).
-
-> **The nf-core framework for community-curated bioinformatics pipelines.**
->
-> Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.
->
-> _Nat Biotechnol._ 2020 Feb 13. doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x).
